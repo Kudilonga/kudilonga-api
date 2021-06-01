@@ -66,8 +66,8 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
       - name: Static Analysis via PHPStan
         run: ./vendor/bin/phpstan analyse --memory-limit=2G
-      - name: Execute tests (Unit and Feature tests) via PHPUnit
-        run: vendor/bin/phpunit
+      - name: Execute tests (Unit and Feature tests) via Pest
+        run: vendor/bin/pest
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
