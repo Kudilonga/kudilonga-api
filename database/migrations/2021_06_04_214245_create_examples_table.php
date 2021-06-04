@@ -15,6 +15,7 @@ class CreateExamplesTable extends Migration
     {
         Schema::create('examples', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('description');
             $table->bigInteger('word_id')->unsigned();
 
             $table->foreign('word_id')
