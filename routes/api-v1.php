@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::resource('languages', 'LanguageController')->only([
     'index',
     'store',
