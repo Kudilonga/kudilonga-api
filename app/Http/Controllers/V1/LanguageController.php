@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\V1;
 
 use Exception;
 use App\{
-    Http\Requests\Language\LanguageRequest,
-    Repositories\Contracts\LanguageRepositoryInterface
+    Http\Controllers\Controller,
+    Http\Requests\V1\Language\LanguageRequest,
+    Repositories\Contracts\V1\LanguageRepositoryInterface
 };
 class LanguageController extends Controller
 {

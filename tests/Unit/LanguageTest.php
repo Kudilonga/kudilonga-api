@@ -6,13 +6,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(Tests\TestCase::class, RefreshDatabase::class);
 
 it('does not create a language without a language_name field', function () {
-    $response = $this->postJson('/api/languages', []);
+    $response = $this->postJson('/api/v1/languages', []);
     $response->assertStatus(422);
 });
 
 it('can create a language', function () {
     $attributes = Language::factory()->raw();
-    $response   = $this->postJson('/api/languages', $attributes);
+    $response   = $this->postJson('/api/v1/languages', $attributes);
     // $response->dump();
     $response->assertStatus(201)->assertJson([
         'message'  => 'Língua adicionada!',
@@ -25,7 +25,7 @@ it('can update a language', function () {
     $language        = Language::factory()->create();
     $updatedLanguage = ['language_name' => 'Francês'];
 
-    $response = $this->putJson("/api/languages/{$language->id}", $updatedLanguage);
+    $response = $this->putJson("/api/v1/languages/{$language->id}", $updatedLanguage);
     // $response->dump();
 
     $response->assertStatus(200)->assertJson(['message'  => 'Língua actualizada!']);
@@ -35,7 +35,7 @@ it('can update a language', function () {
 it('can fetch a language', function () {
     $language = Language::factory()->create();
 
-    $response = $this->getJson("/api/languages/{$language->id}");
+    $response = $this->getJson("/api/v1/languages/{$language->id}");
 
     $data = [
         'message'  => 'Língua encontrada!',
