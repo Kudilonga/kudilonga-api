@@ -14,7 +14,7 @@ abstract class AbstractRepository
         $this->model = $this->resolveModel();
     }
 
-    public function resolveModel()
+    public final function resolveModel()
     {
         return app($this->model);
     }
