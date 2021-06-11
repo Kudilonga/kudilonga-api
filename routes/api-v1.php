@@ -20,3 +20,11 @@ Route::resource('languages', 'LanguageController')->only([
     'update',
     'show'
 ]);
+
+Route::resource('words', 'WordController')->only([
+    'index',
+    'store',
+    'show'
+]);
+
+Route::get('words/language/{id}', 'WordController@getWordsByLanguageId');

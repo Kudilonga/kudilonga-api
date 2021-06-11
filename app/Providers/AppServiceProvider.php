@@ -17,6 +17,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Contracts\V1\LanguageRepositoryInterface',
             'App\Repositories\Eloquent\V1\LanguageRepository'
         );
+
+        $this->app->bind(
+            'App\Repositories\Contracts\V1\WordRepositoryInterface',
+            'App\Repositories\Eloquent\V1\WordRepository'
+        );
     }
 
     /**
