@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests\V1\Word;
 
+use App\Traits\Requests\FailedValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class WordCreateRequest extends FormRequest
 {
+    use FailedValidation;
+    
     /**
      * Determine if the user is authorized to make this request.
      *
