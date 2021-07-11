@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests\V1\Language;
 
+use App\Traits\Requests\FailedValidation;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LanguageRequest extends FormRequest
 {
+    use FailedValidation;
+    
     /**
      * Determine if the user is authorized to make this request.
      *
