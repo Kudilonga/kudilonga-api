@@ -7,7 +7,7 @@ uses(Tests\TestCase::class, RefreshDatabase::class);
 
 it('does not create a language without a language_name field', function () {
     $response = $this->postJson('/api/v1/languages', []);
-    $response->assertStatus(422);
+    $response->assertStatus(400);
 });
 
 it('can create a language', function () {
