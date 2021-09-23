@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  api:
+    build: .
+    volumes:
+      - ./:/var/www/
+    restart: always
+    depends_on:
+      - database
+
+  database:
+    platform: linux/x86_64
+    image: postgres:13.4-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: kudilongadb
+    volumes:
+      - "./.docker/dbdata:/var/lib/postgresql/data"
+
+  nginx:
+    build: ./.docker/nginx
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - api
