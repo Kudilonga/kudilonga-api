@@ -1,0 +1,28 @@
+sudo: required
+
+os:
+  - linux
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.29.2
+
+services:
+  - docker
+
+before_install:
+  - mkdir app
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+install:
+  - docker-compose up -d
+  - sleep 10
+  - docker-compose exec api sh -c "composer install --no-interaction --prefer-dist --optimize-autoloader"
+
+before_script:
+  - docker-compose exec api sh -c "cp .env.testing .env && php artisan key:generate && php artisan migrate --env=testing --seed --force"
+
+script:
+  - docker-compose exec api sh -c "./vendor/bin/phpstan analyse --memory-limit=2G && vendor/bin/pest"
