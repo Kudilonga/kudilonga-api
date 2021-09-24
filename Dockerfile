@@ -13,7 +13,7 @@ RUN curl -sS https://getcomposer.org/installer​ | php -- \
 
 COPY . /var/www
 
-RUN chmod -R 755 /var/www/storage
+RUN chmod -R 777 /var/www/storage
 
 EXPOSE 9000
 
