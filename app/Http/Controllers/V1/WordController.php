@@ -56,7 +56,7 @@ class WordController extends Controller
         ], $founded_word ? self::OK() : self::NOT_FOUND());
     }
 
-    private final function wordListSerializer($data)
+    private function wordListSerializer($data)
     {
         $words = [];
 
@@ -74,7 +74,7 @@ class WordController extends Controller
         return $words;
     }
 
-    private final function wordSerializer($data)
+    private function wordSerializer($data)
     {
         $word = array(
             "id"           => $data->id,
